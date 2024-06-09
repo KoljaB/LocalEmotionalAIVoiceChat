@@ -1,5 +1,3 @@
-Here's a revised and clearer version of the installation instructions, particularly improving clarity for step 4:
-
 # EmoTTS
 
 Simulate conversations with an AI that can express emotions.
