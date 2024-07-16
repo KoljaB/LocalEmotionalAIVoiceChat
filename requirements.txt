@@ -1,4 +1,4 @@
-RealtimeTTS
+RealtimeTTS[all]
 RealtimeSTT
 instructor
 openai_token_counter
