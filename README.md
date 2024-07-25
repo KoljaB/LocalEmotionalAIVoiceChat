@@ -42,8 +42,10 @@ This project implements a real-time ai conversation system with emotional text-t
     - start "install_win.bat" in the llm_ollama folder to install ollama
     - start "start_ollama_server.bat" in the main or the llm_ollama folder to start the server
   - openai:
+    - start "install_win.bat" in the llm_openai folder to openai python library
     - put your openai key in the environment variable "OPENAI_API_KEY"
   - anthropic:
+    - start "install_win.bat" in the llm_anthropic folder to anthropic python library
     - put your anthropic key in the environment variable "ANTHROPIC_API_KEY" 
 4. Download the specific Lasinya XTTS voice model from huggingface: start the download_tts_model.py which will download the needed files.
   Then open tts_config.json and enter the filepath to the model files there.
