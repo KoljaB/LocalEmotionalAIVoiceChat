@@ -20,15 +20,23 @@ This project implements an AI-powered conversational system with real-time emoti
 ## Installation
 
 1. Clone the repository
-2. Install required dependencies: `pip install -r requirements.txt`
-3. Set up the LLM server (see LLM setup instructions)
-4. Prepare TTS reference audio files for every emotion in the `reference_wavs` folder
-- for every emotion you want to use put a wave file in the folder
-- the file name must be the emotion name
-- file format must be .wav, 22050 Hz, 16 bit, mono
-5. Download the specific Lasinya XTTS voice model from huggingface.
-Start the download_tts_model.py which will download the needed files.
-Then open tts_config.json and enter the filepath to the model files there.
+2. Open _install_win.bat, the path behind PYTHON_EXE to the path to your Python 3.10.9 executable
+3. Select your LLM provider:
+  - open `main.py` and enter your desired LLM provider under llm_provider in class Config ("llamacpp" or "ollama" or "openai" or "anthropic")
+  - llama.cpp:
+    - start "install_win.bat" in the llm_llamacpp folder to install llama cpp webserver
+    - also start "download_model.bat" in the llm_llamacpp folder to download the openhermes-2.5-mistral-7b.Q5_K_M.gguf model we use for inference
+    - open start_llamacpp_server.bat in the llm_llamacpp folder, adjust especially --n_gpu_layers 25 to your environment and GPU capabilities
+    - start "start_llamacpp_server.bat" in the main or the llm_llamacpp folder to start the server
+  - ollama:
+    - start "install_win.bat" in the llm_ollama folder to install ollama
+    - start "start_ollama_server.bat" in the main or the llm_ollama folder to start the server
+  - openai:
+    - put your openai key in the environment variable "OPENAI_API_KEY"
+  - anthropic:
+    - put your anthropic key in the environment variable "ANTHROPIC_API_KEY" 
+4. Download the specific Lasinya XTTS voice model from huggingface: start the download_tts_model.py which will download the needed files.
+  Then open tts_config.json and enter the filepath to the model files there.
 
 ### CUDA Installation (for better performance)
 
@@ -102,19 +110,5 @@ These warnings are normal and do not affect the functionality of the system. The
 
 ## Configuration
 
-- Open `main.py` and enter your desired LLM provider under llm_provider in class Config ("llamacpp" or "ollama" or "openai" or "anthropic")
 - Adjust `chat_params.json` to modify character and user descriptions, and conversation scenario
 - Adjust `llm_xxx/completion_params.json` to modify LLM completion parameters
-- Start the install_win.bat in the folder of the selected llm_provider to install the needed library
-- llama.cpp:
-  - start "install_win.bat" in the llm_llamacpp folder to install llama cpp webserver
-  - also start "download_model.bat" in the llm_llamacpp folder to download the openhermes-2.5-mistral-7b.Q5_K_M.gguf model we use for inference
-  - open start_llamacpp_server.bat in the main or the llm_llamacpp folder, adjust especially --n_gpu_layers 25 to your environment and GPU capabilities
-- ollama:
-  - start "install_win.bat" in the llm_ollama folder to install ollama
-  - start "start_ollama_server.bat" in the main or the llm_ollama folder to start the ollama server
-- openai:
-  - your openai key should be in the environment variable "OPENAI_API_KEY"
-- anthropic:
-  - your openai key should be in the environment variable "ANTHROPIC_API_KEY" 
-
