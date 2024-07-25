@@ -14,13 +14,13 @@ This project implements an AI-powered conversational system with real-time emoti
 ## Requirements
 
 - Python <=3.10 (3.10.9 is recommended)
-- CUDA-enabled GPU (for TTS and LLM processing)
-- Various Python libraries (see `requirements.txt`)
+- [CUDA-enabled GPU](#cuda-installation)
 
 ## Installation
 
 1. Clone the repository
 2. Open _install_win.bat, chang the path behind PYTHON_EXE to the path to your Python 3.10.9 executable
+  - start _install_win.bat
 3. Select your LLM provider:
   - open `main.py` and enter your desired LLM provider under llm_provider in class Config ("llamacpp" or "ollama" or "openai" or "anthropic")
   - llama.cpp:
@@ -38,7 +38,7 @@ This project implements an AI-powered conversational system with real-time emoti
 4. Download the specific Lasinya XTTS voice model from huggingface: start the download_tts_model.py which will download the needed files.
   Then open tts_config.json and enter the filepath to the model files there.
 
-### CUDA Installation (for better performance)
+### CUDA Installation
 
 These steps are recommended for those who require better performance and have a compatible NVIDIA GPU.
 
