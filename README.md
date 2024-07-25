@@ -1,8 +1,16 @@
 # Emotional AI Voice Chat 
 
-A fast conversational System with emotional TTS output.
+Fast conversation with emotional AI
 
-This project implements an AI-powered conversational system with real-time emotional text-to-speech (TTS) capabilities. It uses a large language model (LLM) for generating responses and a TTS engine with voice-cloning for voice output.
+<details>
+<summary>Click to show/hide video</summary>
+
+https://github.com/user-attachments/assets/97e9f025-7d9e-4ad7-a1c6-a3a32a02f714
+
+</details>
+
+This project implements a real-time ai conversation system with emotional text-to-speech (TTS) capabilities. It uses a large language model (LLM) for generating responses and a TTS engine with voice-cloning for voice output.
+
 
 ## Features
 
