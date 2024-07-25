@@ -1,0 +1,7 @@
+{
+    "use_local_model": true,
+    "specific_model": "Lasinya",
+    "local_models_path": "D:\\Projekte\\TestLingu\\Linguflex\\models\\xtts",
+    "references_folder": "reference_wavs",
+    "dbg_log": false
+}

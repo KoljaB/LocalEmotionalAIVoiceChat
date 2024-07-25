@@ -1,4 +1,2 @@
-RealtimeTTS[all]
-RealtimeSTT
-instructor
-openai_token_counter
+RealtimeTTS[coqui]==0.4.5
+RealtimeSTT==0.2.1
