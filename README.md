@@ -20,7 +20,7 @@ This project implements an AI-powered conversational system with real-time emoti
 ## Installation
 
 1. Clone the repository
-2. Open _install_win.bat, the path behind PYTHON_EXE to the path to your Python 3.10.9 executable
+2. Open _install_win.bat, chang the path behind PYTHON_EXE to the path to your Python 3.10.9 executable
 3. Select your LLM provider:
   - open `main.py` and enter your desired LLM provider under llm_provider in class Config ("llamacpp" or "ollama" or "openai" or "anthropic")
   - llama.cpp:
