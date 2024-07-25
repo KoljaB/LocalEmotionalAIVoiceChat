@@ -71,7 +71,6 @@ class LLMHandler:
                         print(f"Token received {chunk_time:.2f} seconds after request: {token}")
 
             full_response = ''.join(collected_messages)
-            self.add_assistant_text(full_response)
 
             if self.log_stats:
                 total_time = time.time() - start_time
