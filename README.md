@@ -1,5 +1,3 @@
-
-https://github.com/user-attachments/assets/7d4f0226-fe93-4096-89e2-4a96b80ab693
 # Emotional AI Voice Chat 
 
 Fast conversation with emotional AI
