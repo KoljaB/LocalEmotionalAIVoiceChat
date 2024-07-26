@@ -5,7 +5,7 @@ Fast conversation with emotional AI
 <details>
 <summary>Click to show/hide video</summary>
 
-https://github.com/user-attachments/assets/97e9f025-7d9e-4ad7-a1c6-a3a32a02f714
+  https://github.com/user-attachments/assets/85e786fb-4dad-438d-96a0-d01817f741ba
 
 </details>
 
