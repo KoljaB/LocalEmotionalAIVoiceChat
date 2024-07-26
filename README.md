@@ -15,7 +15,7 @@ This project implements a real-time ai conversation system with emotional text-t
 ## Features
 
 - Real-time speech-to-text input
-- LLM-powered conversation generation
+- Cnversation generation powered by: Ollama, LMStudio, OpenAI, Anthropic or llama.cpp Webserver
 - Emotion-aware realtime text-to-speech output
 - Configurable system and user personas
 
