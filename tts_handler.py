@@ -71,14 +71,15 @@ class TTSHandler:
                 self.chunk_queue.put(chunk)
 
         self.stream.play_async(
-            fast_sentence_fragment_allsentences_multiple=True,
+            fast_sentence_fragment=True,
             log_synthesized_text=True,
             muted=True,
             on_audio_chunk=on_audio_chunk,
-            minimum_sentence_length=5,
-            minimum_first_fragment_length=5,
-            context_size=4,
-            force_first_fragment_after_words=50,
+            minimum_sentence_length=10,
+            minimum_first_fragment_length=10,
+            context_size=5,
+            sentence_fragment_delimiters=".?!;:,\n…)]}。",
+            force_first_fragment_after_words=999999,
         )
 
     def tts_play_sentence(self, sentence: Sentence):

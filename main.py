@@ -10,7 +10,7 @@ import logging
 
 @dataclass
 class Config:
-    llm_provider: str = "anthropic"  # "llamacpp" or "ollama" or "openai" or "anthropic"
+    llm_provider: str = "lmstudio"  # "llamacpp" or "ollama" or "openai" or "anthropic" or "lmstudio"
     print_emotions: bool = True
     print_llm_text: bool = True
     use_tts: bool = True
@@ -22,6 +22,10 @@ class Config:
     stt_silence_duration: float = 0.15
     chat_params_file: str = "chat_params.json"    
     tts_config_file: str = "tts_config.json"
+
+
+def color_text(text, color_code):
+    return f"\033[{color_code}m{text}\033[0m"
 
 class Main:
     def __init__(self, config: Config):
@@ -49,6 +53,8 @@ class Main:
             from llm_openai.llm_handler import LLMHandler
         elif config.llm_provider == "anthropic":
             from llm_anthropic.llm_handler import LLMHandler
+        elif config.llm_provider == "lmstudio":
+            from llm_lmstudio.llm_handler import LLMHandler
         self.llm_handler = LLMHandler()
 
 
@@ -76,6 +82,25 @@ class Main:
         emotions_str = ', '.join(f'(\033[0;91m{emotion.lower()}\033[0m)' for emotion in self.valid_emotions)
         print(f"Available emotions: {emotions_str}\n")
 
+    # def print_scenario(self):
+    #     blue_scenario = f"\033[94m{self.chat_params['scenario'].format(char=self.chat_params['char'], user=self.chat_params['user'])}\033[0m"
+    #     print(f"Scenario: {blue_scenario}")
+
+    def print_character_info(self):
+
+        char_name = color_text(self.chat_params['char'], '96')  # Light Cyan
+        user_name = color_text(self.chat_params['user'], '93')  # Light Yellow
+        char_desc = self.chat_params['char_description'].format(char=self.chat_params['char'])
+        user_desc = self.chat_params['user_description'].format(user=self.chat_params['user'])
+        scenario = color_text(self.chat_params['scenario'].format(char=self.chat_params['char'], user=self.chat_params['user']), '94')  # Light Blue
+
+        print(f"Assistant Name: {char_name}")
+        print(f"Description: {char_desc}")
+        print(f"\nUser Name: {user_name}")
+        print(f"Description: {user_desc}")
+        print(f"\nScenario: {scenario}")
+        print()  # Extra line for spacing
+
     def get_system_prompt(self) -> str:
         valid_emotions_str = ', '.join(f'[{emotion}]' for emotion in self.valid_emotions)
         
@@ -94,8 +119,8 @@ class Main:
     def process_llm_token(self, token: str):
         for char in token:
             self.assistant_text += char  # Add each character to the complete assistant text
-            if char == ' ' and self.last_char == ']':
-                continue
+            # if char == ' ' and self.last_char == ']':
+            #     continue
             if char == '[':
                 if self.buffer:
                     self.process_buffer()
@@ -133,12 +158,14 @@ class Main:
         emotion = self.buffer[1:-1].lower()
         current_emotion = "neutral" if emotion not in self.valid_emotions else emotion
         if self.config.print_emotions:
-            print(f" (\033[0;91m{current_emotion.lower()}\033[0m) ", end='', flush=True)
+            print(f"(\033[0;91m{current_emotion.lower()}\033[0m) ", end='', flush=True)
         if self.tts_handler:
             self.tts_handler.sentence_queue.add_emotion(current_emotion)
 
     def run(self):
         self.print_available_emotions()
+        self.print_character_info()
+        #self.print_scenario()
         system_prompt = self.get_system_prompt()
 
         while True:
@@ -151,19 +178,23 @@ class Main:
         self.cleanup()
 
     def get_user_input(self) -> str:
-        print(f"\n>>> {self.chat_params['user']}: ", end="", flush=True)
+        user_name = color_text(self.chat_params['user'], '93')  # Light Green
+
+        print(f"\n>>> {user_name}: ", end="", flush=True)
 
         user_text = ""
         while len(user_text.strip()) == 0:
             user_text = self.recorder.text()
-        print(user_text)
+        colored_user_text = color_text(user_text, '93')
+        print(colored_user_text)
         return user_text
 
     def should_exit(self, user_text: str) -> bool:
         return len(user_text) <= 7 and "exit" in user_text.lower()
 
     def process_user_input(self, user_text: str, system_prompt: str):
-        print(f"<<< {self.chat_params['char']}:", end="", flush=True)
+        char_name = color_text(self.chat_params['char'], '96')  # Light Magenta
+        print(f"<<< {char_name}: ", end="", flush=True)
         self.llm_handler.add_user_text(user_text)
 
         # Reset token processing state

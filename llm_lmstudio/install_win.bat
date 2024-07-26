@@ -16,12 +16,9 @@ call venv\Scripts\activate.bat
 echo Upgrading pip...
 python -m pip install --upgrade pip
 
-:: Install llama-cpp-python[server]==0.2.74 webserver python library
-echo Installing llama-cpp-python[server]==0.2.74 webserver python library...
-set "CMAKE_ARGS=-DLLAMA_CUBLAS=on"
-set FORCE_CMAKE=1
-python -m pip install llama-cpp-python[server]==0.2.74 --force-reinstall --upgrade --no-cache-dir
-python -m pip install numpy==1.23.5
+:: Install ollama python library
+echo Installing ollama python library...
+python -m pip install ollama
 
 
 echo Installation completed.
