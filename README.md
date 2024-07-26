@@ -30,7 +30,7 @@ This project implements a real-time ai conversation system with emotional text-t
 2. Open _install_win.bat, chang the path behind PYTHON_EXE to the path to your Python 3.10.9 executable
   - start _install_win.bat
 3. Select your LLM provider:
-  - open `main.py` and enter your desired LLM provider under llm_provider in class Config ("llamacpp" or "ollama" or "openai" or "anthropic")
+  - open `main.py` and enter your desired LLM provider under llm_provider in class Config ("llamacpp" or "ollama" or "lmstudio" or "openai" or "anthropic")
   - llama.cpp:
     - start "install_win.bat" in the llm_llamacpp folder to install llama cpp webserver
     - also start "download_model.bat" in the llm_llamacpp folder to download the openhermes-2.5-mistral-7b.Q5_K_M.gguf model we use for inference
@@ -39,6 +39,8 @@ This project implements a real-time ai conversation system with emotional text-t
   - ollama:
     - start "install_win.bat" in the llm_ollama folder to install ollama
     - start "start_ollama_server.bat" in the main or the llm_ollama folder to start the server
+  - lmstudio:
+    - install and start LMStudio, load a model and start the local server
   - openai:
     - start "install_win.bat" in the llm_openai folder to openai python library
     - put your openai key in the environment variable "OPENAI_API_KEY"
